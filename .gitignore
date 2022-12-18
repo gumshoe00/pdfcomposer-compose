@@ -1,0 +1,10 @@
+.*
+!.gitignore
+__py
+*/__py
+*/*/__py
+*/*/*/__py
+dist
+src/*.egg-info
+
+tests/mockdata
