@@ -12,7 +12,7 @@ setup(
     name='pdfcomposer-compose',
     version='1.0.0',
     description='Composes one PDF from the given pdf files, in the given sequence.',
-    url='https://github.com/gumshoe00/gumshoe_pdf_composer',
+    url='https://github.com/gumshoe00/pdfcomposer-compose',
     long_description=readme_content,
     long_description_content_type='text/markdown',
     author='smikhail',
