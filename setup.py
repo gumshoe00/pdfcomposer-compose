@@ -10,7 +10,7 @@ with open('LICENSE', 'r') as lfl:
 
 setup(
     name='pdfcomposer-compose',
-    version='1.0.0',
+    version='1.0.1',
     description='Composes one PDF from the given pdf files, in the given sequence.',
     url='https://github.com/gumshoe00/pdfcomposer-compose',
     long_description=readme_content,
