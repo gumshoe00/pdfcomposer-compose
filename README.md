@@ -8,7 +8,9 @@ then writes it to the given outfile path.
 ## Installation
 
 
-To install, run `pip install compose`
+To install, run `pip install pdfcomposer-compose` 
+
+(OR `pip install "pdfcomposer-compose"`)
 
 
 ## Examples
@@ -31,14 +33,20 @@ pdfcomposer --outputer compose \
 
 ```python
 
-import pdfcomposer as composer
+from pdfcomposer_compose import main
 
-args = './outfile.pdf', './infile1.pdf', './infile2.pdf'
+args = ['./outfile.pdf', './infile1.pdf', './infile2.pdf']
 
-kwargs = dict(title="My PDF", author="John Doe",
-            subject="My first PDF", creator="John Doe")
+kws = dict(path='compose',
+           title="My PDF",
+           author="John Doe",
+           subject="My first PDF",
+           creator="John Doe")
 
-composer(*args, **kwargs)
+result = main(*args, **kws)
+
+print(result)
+
 
 # composes a PDF with the content of infile1.pdf then infile2.pdf
 # sets the PDF info with the given kwargs

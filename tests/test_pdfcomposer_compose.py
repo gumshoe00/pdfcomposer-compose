@@ -7,8 +7,13 @@ from io import StringIO
 
 from pdfcomposer_compose import main
 
+
+MOC_DATA_DIR = pathlib.Path.cwd().parent.parent.parent.joinpath('mockdata')
+print('mock-data dir: ', MOC_DATA_DIR)
+
+
 class TestPdfComposerCompose(unittest.TestCase):
-    @patch('sys.stdin', StringIO('pdfcomposer --outputer compose --files ~/projects/pdf-composer/src/pdf-composer-infile/tests/mockdata/outfile.pdf ~/projects/pdf-composer/src/pdf-composer-infile/tests/mockdata/infile1.pdf'))
+    @patch('sys.stdin', StringIO('pdfcomposer --outputer compose --files ~/projects/gumshoe/mockdata/outfile.pdf ~/projects/gumshoe/mockdata/infile1.pdf ~/projects/gumshoe/mockdata/infile1.pdf'))
     @patch('sys.stdout', new_callable=StringIO)
     @patch('sys.stderr', new_callable=StringIO)
     def test_main(self, stderr, stdout):
@@ -23,14 +28,11 @@ class TestPdfComposerCompose(unittest.TestCase):
         self.assertEqual(stderr.getvalue(), err)
 
     def test_compose(self):
-        _dir = pathlib.Path(__file__).parent.joinpath('mockdata')
-        _outfile = pathlib.Path(str(_dir.joinpath('output.pdf')))
-        if _outfile.exists():
-            _outfile.unlink()
+        main(*[str(MOC_DATA_DIR.joinpath('output.pdf')),
+                str(MOC_DATA_DIR.joinpath('infile1.pdf')),
+                str(MOC_DATA_DIR.joinpath('infile1.pdf'))])
 
-        main(*[str(_dir.joinpath('output.pdf')), str(_dir.joinpath('infile1.pdf')), str(_dir.joinpath('infile1.pdf'))])
-
-        actual = pathlib.Path(str(_dir.joinpath('output.pdf'))).exists()
+        actual = MOC_DATA_DIR.joinpath('output.pdf').exists()
         expected = True
 
         self.assertEqual(actual, expected)
